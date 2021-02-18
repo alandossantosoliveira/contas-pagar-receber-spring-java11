@@ -19,42 +19,44 @@
 		</div>
 
 		<div class="card-body">
-			<form class="form-horizontal" th:object="${conta}" th:action="@{save}" method="POST" style="margin: 10px">
+			<form class="form-horizontal" th:object="${conta}"
+				th:action="@{save}" method="POST" style="margin: 10px">
 				<div class="form-group">
 					<fieldset>
-					
 						<div class="form-group row">
-							<div class="col-md-1">
-								<input type="text" class="form-control input-sm" id="id" th:field="*{id}" readonly="readonly">
+							<div class="col-md-4">
+							<label>Descrição:</label>
+								<input type="text" class="form-control input-sm" id="descricao"
+									th:field="*{descricao}" placeholder="Descreva a conta">
 							</div>
 						</div>
 						<div class="form-group row">
 							<div class="col-md-4">
-								<input type="text" class="form-control input-sm" id="descricao" th:field="*{descricao}" placeholder="Descreva a conta">
+							<label>Valor:</label>
+								<input type="number" class="form-control input-sm" id="valor"
+									th:field="*{valor}" placeholder="Digite o valor da conta">
 							</div>
 						</div>
 						<div class="form-group row">
 							<div class="col-md-4">
-								<input type="number" class="form-control input-sm" id="valor" th:field="*{valor}" placeholder="Digite o valor da conta">
+							<label>Data:</label>
+								<input type="text" class="form-control input-sm" id="data"
+									th:field="*{data}" placeholder="Ex. 10/10/2020">
 							</div>
 						</div>
-						<div class="form-group row">
-							<div class="col-md-4">
-								<input type="text" class="form-control input-sm" id="data" th:field="*{data}" placeholder="Ex. 10/10/2020">
-							</div>
-						</div>
-						
+
 					</fieldset>
 				</div>
 				<div class="form-group row">
-				   <button type="submit" class="btn btn-sm btn-danger">Salvar</button>
-				   <a class="btn btn-sm btn-default" th:href="@{adicionar}">Voltar</a>
+					<div class="col-md-4 ">
+						<button type="submit" class="btn btn-sm btn-danger float-left">Salvar</button>
+						<a class="btn btn-sm btn-warning float-right" th:href="@{listar}">Voltar</a>
+					</div>
+
 				</div>
 			</form>
 		</div>
-		<div class="card-footer">
-			
-		</div>
+		<div class="card-footer"></div>
 	</div>
 
 

@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Contas {
 	@Id
@@ -14,6 +16,8 @@ public class Contas {
 	private Long id;
 	private String descricao;
 	private float valor;
+	
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date data;
 	public Long getId() {
 		return id;
