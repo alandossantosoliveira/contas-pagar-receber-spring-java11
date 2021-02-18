@@ -2,7 +2,6 @@ package com.estudandojava.contas.model;
 
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,8 +12,7 @@ public class Contas {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	@Column(name="desc")
-	private String decricao;
+	private String descricao;
 	private float valor;
 	private Date data;
 	public Long getId() {
@@ -23,11 +21,11 @@ public class Contas {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getDecricao() {
-		return decricao;
+	public String getDescricao() {
+		return descricao;
 	}
-	public void setDecricao(String decricao) {
-		this.decricao = decricao;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 	public float getValor() {
 		return valor;
