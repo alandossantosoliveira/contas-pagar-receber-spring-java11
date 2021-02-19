@@ -13,14 +13,26 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
-	<div class="card" style="padding:20px">
+	<div class="card" style="padding: 20px">
 		<div class="card-header">
-			<strong>Minhas contas a pagar</strong>
+			<strong>Contas cadastradas</strong>
 		</div>
+
+
+		<div class="row align-items-center" style="margin-top: 20px"
+			th:if="${#httpServletRequest.getParameter('add') == 'sim'}">
+			<div class="col">
+				<div class="alert alert-success text-center">
+					<h5>Conta adicionada com sucesso!</h5>
+				</div>
+			</div>
+		</div>
+
 
 		<div class="card-body">
 			<div class="table-responsive">
-				<table class="table table-sm table-striped table-have table-bordered">
+				<table
+					class="table table-sm table-striped table-have table-bordered">
 					<thead>
 						<tr>
 							<th>ID</th>
@@ -35,14 +47,16 @@
 							<td th:text="${conta.id}">ID CONTA</td>
 							<td th:text="${conta.descricao}">ID CONTA</td>
 							<td th:text="${conta.valor}">ID CONTA</td>
-							<td th:text="${#dates.format(conta.data, 'dd/MM/yyyy')}">ID CONTA</td>
+							<td th:text="${#dates.format(conta.data, 'dd/MM/yyyy')}">ID
+								CONTA</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
 		</div>
 		<div class="card-footer">
-		    <a class="btn btn-sm btn-danger" th:href="@{adicionar}">Nova conta</a>
+			<a class="btn btn-sm btn-danger" th:href="@{adicionar}">Nova
+				conta</a>
 		</div>
 	</div>
 

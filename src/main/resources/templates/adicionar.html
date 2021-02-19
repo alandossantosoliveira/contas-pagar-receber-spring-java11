@@ -23,25 +23,36 @@
 				th:action="@{save}" method="POST" style="margin: 10px">
 				<div class="form-group">
 					<fieldset>
+
+						<div class="form-group row" th:if="${#fields.hasAnyErrors()}" >
+							<div class="col-md-4">
+								<div class="alert alert-danger">
+									<div th:each="detalheErro : ${#fields.detailedErrors()}">
+										<span th:text="${detalheErro.message}"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+
 						<div class="form-group row">
 							<div class="col-md-4">
-							<label>Descrição:</label>
-								<input type="text" class="form-control input-sm" id="descricao"
+								<label>Descrição:</label> <input type="text"
+									class="form-control input-sm" id="descricao"
 									th:field="*{descricao}" placeholder="Descreva a conta">
 							</div>
 						</div>
 						<div class="form-group row">
 							<div class="col-md-4">
-							<label>Valor:</label>
-								<input type="number" class="form-control input-sm" id="valor"
-									th:field="*{valor}" placeholder="Digite o valor da conta">
+								<label>Valor:</label> <input type="number"
+									class="form-control input-sm" id="valor" th:field="*{valor}"
+									placeholder="Digite o valor da conta">
 							</div>
 						</div>
 						<div class="form-group row">
 							<div class="col-md-4">
-							<label>Data:</label>
-								<input type="text" class="form-control input-sm" id="data"
-									th:field="*{data}" placeholder="Ex. 10/10/2020">
+								<label>Data:</label> <input type="text"
+									class="form-control input-sm" id="data" th:field="*{data}"
+									placeholder="Ex. 10/10/2020">
 							</div>
 						</div>
 
@@ -50,7 +61,7 @@
 				<div class="form-group row">
 					<div class="col-md-4 ">
 						<button type="submit" class="btn btn-sm btn-danger float-left">Salvar</button>
-						<a class="btn btn-sm btn-warning float-right" th:href="@{listar}">Voltar</a>
+						<a class="btn btn-sm btn-default float-right" th:href="@{listar}">Voltar</a>
 					</div>
 
 				</div>
