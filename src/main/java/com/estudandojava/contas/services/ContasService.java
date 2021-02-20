@@ -28,4 +28,7 @@ public class ContasService {
 	public void delete(Long id) {
 		rep.deleteById(id);
 	}
+	public ContasService() {
+		// TODO Auto-generated constructor stub
+	}
 }
