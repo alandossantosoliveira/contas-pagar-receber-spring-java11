@@ -7,10 +7,22 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-	crossorigin="anonymous"></script>
+<script>
+	function test() {
+		var text = document.getElementById('search').value
+		console.log(text)
+
+		var req = new XMLHttpRequest();
+
+		req.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				document.getElementById("testee").innerHTML = this.responseText;
+			}
+		};
+		req.open('GET', 'listar?search=' + text, true)
+		req.send();
+	}
+</script>
 </head>
 <body>
 	<div class="card" style="padding: 20px">
@@ -19,17 +31,30 @@
 		</div>
 
 
+		<form class="form-horizontal" method="GET" th:action="@{/contas/listar}" style="margin-top: 10px">
+			<div class="input-group">
+				<input type="text" class="form-control input-sm" id="search"
+					name="search" placeholder="Busque por descricao ou valor" th:value="${search}">
+				<div class="input-group-append">
+				
+					<button type="submit" class="btn btn-sm btn-danger">
+						Buscar</button>
+						
+				</div>
+			</div>
+		</form>
+
 		<div class="row align-items-center" style="margin-top: 20px"
 			th:if="${#httpServletRequest.getParameter('add') == 'sim'}">
 			<div class="col">
 				<div class="alert alert-success text-center">
-					<h5>Conta adicionada com sucesso!</h5>
+					<h5>Conta salva com sucesso!</h5>
 				</div>
 			</div>
 		</div>
 
 
-		<div class="card-body">
+		<div class="card-body" id="testee">
 			<div class="table-responsive">
 				<table
 					class="table table-sm table-striped table-have table-bordered">

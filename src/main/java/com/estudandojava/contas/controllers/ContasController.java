@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.estudandojava.contas.model.Contas;
@@ -25,10 +26,22 @@ public class ContasController {
 	private ContasService contasService;
 	
 	@RequestMapping("/listar")
-	public String index( Model model) {
-		List<Contas> list = contasService.listAll();
-		model.addAttribute("listaContas", list);
+	public String index(@RequestParam(value = "search", required = false) String q, Model model) {
 		
+		List<Contas> list = null;
+		
+		if(q != null && (!q.matches("[-+]?[0-9]*\\.?[0-9]+")) ) {
+			list = contasService.listAllLikeDescricao(q);
+			model.addAttribute("search", q);			
+		}else if (q != null && (q.matches("[-+]?[0-9]*\\.?[0-9]+")) ){
+			list = contasService.listAllByValor(Float.parseFloat(q) );
+			model.addAttribute("search", q);			
+		}else {
+			list = contasService.listAll();
+			model.addAttribute("search", "");
+		}	
+		
+		model.addAttribute("listaContas", list);			
 		return "index";
 	}
 	
@@ -62,7 +75,7 @@ public class ContasController {
 		}
 		contasService.save(conta);
 		
-		ModelAndView mv = new ModelAndView("redirect:/contas/listar");
+		ModelAndView mv = new ModelAndView("redirect:/contas/listar?add=sim");
 		
 		return mv;
 	}
